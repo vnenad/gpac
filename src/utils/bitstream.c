@@ -117,6 +117,28 @@ GF_BitStream *gf_bs_new(const char *buffer, u64 BufferSize, u32 mode)
 }
 
 GF_EXPORT
+GF_BitStream *gf_bs_from_buffer(char *f, u32 f_size, u32 mode)
+{
+	GF_BitStream *tmp;
+	if (!f) return NULL;
+
+	tmp = (GF_BitStream *)gf_malloc(sizeof(GF_BitStream));
+	if (!tmp) return NULL;
+	memset(tmp, 0, sizeof(GF_BitStream));
+	/*switch to internal mode*/
+	mode = (mode == GF_BITSTREAM_READ) ? GF_BITSTREAM_READ : GF_BITSTREAM_WRITE;
+	tmp->bsmode = mode;
+	tmp->current = 0;
+	tmp->nbBits = (mode == GF_BITSTREAM_READ) ? 8 : 0;
+	tmp->original = f;
+	tmp->position = 0;
+	tmp->stream = NULL;
+	tmp->size = f_size;
+
+	return tmp;
+}
+
+GF_EXPORT
 GF_BitStream *gf_bs_from_file(FILE *f, u32 mode)
 {
 	GF_BitStream *tmp;

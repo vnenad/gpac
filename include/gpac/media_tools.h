@@ -26,7 +26,6 @@
 #ifndef _GF_MEDIA_H_
 #define _GF_MEDIA_H_
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -252,6 +251,7 @@ typedef struct __track_import
 
 GF_Err gf_media_import(GF_MediaImporter *importer);
 
+GF_Err gf_import_hevc_stream(GF_MediaImporter *import, char* hevc_stream_buffer, u32 hevc_stream_buffer_size);
 
 /*adds chapter info contained in file - import_fps is optional (most formats don't use it), defaults to 25*/
 GF_Err gf_media_import_chapters(GF_ISOFile *file, char *chap_file, Double import_fps);

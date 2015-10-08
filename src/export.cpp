@@ -1279,6 +1279,7 @@
 #pragma comment (linker, EXPORT_SYMBOL(gf_media_make_3gpp) )
 #pragma comment (linker, EXPORT_SYMBOL(gf_media_make_psp) )
 #pragma comment (linker, EXPORT_SYMBOL(gf_media_import) )
+#pragma comment (linker, EXPORT_SYMBOL(gf_import_hevc_stream) )
 #pragma comment (linker, EXPORT_SYMBOL(gf_media_import_chapters) )
 #pragma comment (linker, EXPORT_SYMBOL(gf_media_change_pl) )
 #pragma comment (linker, EXPORT_SYMBOL(gf_media_nalu_next_start_code_bs) )
