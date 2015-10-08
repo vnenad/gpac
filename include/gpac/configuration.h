@@ -35,18 +35,18 @@
 /*Configuration for visual studio, 32/64 bits */
 #if defined(WIN32) && !defined(_WIN32_WCE) 
 
-#define GPAC_HAS_SSL
+//#define GPAC_HAS_SSL
 
-#define GPAC_HAS_SPIDERMONKEY
-#define GPAC_HAS_JPEG
-#define GPAC_HAS_PNG
+//#define GPAC_HAS_SPIDERMONKEY
+//#define GPAC_HAS_JPEG
+//#define GPAC_HAS_PNG
 
 #define GPAC_MEMORY_TRACKING
 
 /*Win32 IPv6 is evaluated at compile time, !! do not uncomment !!*/
 //#define GPAC_HAS_IPV6
 
-#define GPAC_HAS_GLU
+//#define GPAC_HAS_GLU
 
 
 
@@ -161,7 +161,7 @@
 //#define GPAC_DISABLE_CORE_TOOLS
 
 /*disables core tools */
-//#define GPAC_DISABLE_ZLIB
+#define GPAC_DISABLE_ZLIB
 
 /*disables SVG scene graph*/
 //#define GPAC_DISABLE_SVG
