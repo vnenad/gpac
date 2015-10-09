@@ -155,7 +155,7 @@
 //#define GPAC_DISABLE_PLAYER
 
 /*disables scene manager */
-//#define GPAC_DISABLE_SMGR
+#define GPAC_DISABLE_SMGR
 
 /*disables core tools */
 //#define GPAC_DISABLE_CORE_TOOLS
@@ -164,44 +164,44 @@
 #define GPAC_DISABLE_ZLIB
 
 /*disables SVG scene graph*/
-//#define GPAC_DISABLE_SVG
+#define GPAC_DISABLE_SVG
 
 /*disables VRML/BIFS scene graphs*/
 //#define GPAC_DISABLE_VRML
 
 /*disables X3D scene graphs*/
-//#define GPAC_DISABLE_X3D
+#define GPAC_DISABLE_X3D
 
 /*disables MPEG-4 OD Framework - this only minimalize the set of OD features used, however all cannot be removed*/
 //#define GPAC_MINIMAL_ODF
 
 /*disables BIFS coding*/
-//#define GPAC_DISABLE_BIFS
+#define GPAC_DISABLE_BIFS
 
 /*disables LASeR coder*/
-//#define GPAC_DISABLE_LASER
-//#define GPAC_DISABLE_SAF
+#define GPAC_DISABLE_LASER
+#define GPAC_DISABLE_SAF
 
 /*disables BIFS Engine support - TODO - merge DIMS and LASeR into BENG and rename it*/
-//#define GPAC_DISABLE_SENG
+#define GPAC_DISABLE_SENG
 
 /*disables Cubic QTVR importing*/
-//#define GPAC_DISABLE_QTVR
+#define GPAC_DISABLE_QTVR
 
 /*disables AVILib support*/
-//#define GPAC_DISABLE_AVILIB
+#define GPAC_DISABLE_AVILIB
 
 /*disables OGG support*/
-//#define GPAC_DISABLE_OGG
+#define GPAC_DISABLE_OGG
 
 /*disables MPEG2 PS support*/
-//#define GPAC_DISABLE_MPEG2PS
+#define GPAC_DISABLE_MPEG2PS
 
 /*disables MPEG2 TS demux support*/
 //#define GPAC_DISABLE_MPEG2TS
 
 /*disables MPEG2 TS Mux support*/
-//#define GPAC_DISABLE_MPEG2TS_MUX
+#define GPAC_DISABLE_MPEG2TS_MUX
 
 /*disables all media import functions*/
 //#define GPAC_DISABLE_MEDIA_IMPORT
@@ -213,31 +213,31 @@
 //#define GPAC_DISABLE_MEDIA_EXPORT
 
 /*disables SWF importer*/
-//#define GPAC_DISABLE_SWF_IMPORT
+#define GPAC_DISABLE_SWF_IMPORT
 
 /*disables all media export functions*/
-//#define GPAC_DISABLE_SCENE_STATS
+#define GPAC_DISABLE_SCENE_STATS
 
 /*disables scene -> MP4 encoder*/
-//#define GPAC_DISABLE_SCENE_ENCODER
+#define GPAC_DISABLE_SCENE_ENCODER
 
 /*disables ISOM -> scene decoder*/
-//#define GPAC_DISABLE_LOADER_ISOM
+#define GPAC_DISABLE_LOADER_ISOM
 
 /*disables BT/WRL/X3DV -> scene decoder*/
-//#define GPAC_DISABLE_LOADER_BT
+#define GPAC_DISABLE_LOADER_BT
 
 /*disables XMTA/X3D -> scene decoder*/
-//#define GPAC_DISABLE_LOADER_XMT
+#define GPAC_DISABLE_LOADER_XMT
 
 /*disables mcrypt*/
-//#define GPAC_DISABLE_MCRYPT
+#define GPAC_DISABLE_MCRYPT
 
 /*disables all ISO FF*/
 //#define GPAC_DISABLE_ISOM
 
 /*disables ISO FF hint tracks*/
-//#define GPAC_DISABLE_ISOM_HINTING
+#define GPAC_DISABLE_ISOM_HINTING
 
 /*disables ISO FF writing*/
 //#define GPAC_DISABLE_ISOM_WRITE
@@ -246,37 +246,37 @@
 //#define GPAC_DISABLE_ISOM_FRAGMENTS
 
 /*disables scene graph */
-//#define GPAC_DISABLE_SCENEGRAPH
+#define GPAC_DISABLE_SCENEGRAPH
 
 /*disables scene graph textual dump*/
-//#define GPAC_DISABLE_SCENE_DUMP
+#define GPAC_DISABLE_SCENE_DUMP
 
 /*disables OD graph textual dump*/
-//#define GPAC_DISABLE_OD_DUMP
+#define GPAC_DISABLE_OD_DUMP
 
 /*disables OD graph textual dump*/
-//#define GPAC_DISABLE_ISOM_DUMP
+#define GPAC_DISABLE_ISOM_DUMP
 
 /*disables IETF RTP/SDP/RTSP*/
-//#define GPAC_DISABLE_STREAMING
+#define GPAC_DISABLE_STREAMING
 
 /*disables dashclient */
-//#define GPAC_DISABLE_DASH_CLIENT
+#define GPAC_DISABLE_DASH_CLIENT
 
 /*disables Timed Text support */
-//#define GPAC_DISABLE_TTXT
+#define GPAC_DISABLE_TTXT
 
 /*disables TTML */
 //#define GPAC_DISABLE_TTML
 
 /*disables DASH MPD */
-//#define GPAC_DISABLE_MPD
+#define GPAC_DISABLE_MPD
 
 /*disables HEVC */
 //#define GPAC_DISABLE_HEVC
 
 /*disables VOBSUB */
-//#define GPAC_DISABLE_VOBSUB
+#define GPAC_DISABLE_VOBSUB
 
 
 #endif		/*_GF_CONFIG_H_*/
