@@ -366,6 +366,9 @@ GF_ISOFile *gf_isom_open(const char *fileName, u32 OpenMode, const char *tmp_dir
 /*close the file, write it if new/edited*/
 GF_Err gf_isom_close(GF_ISOFile *the_file);
 
+/*close the file, write stream to bs_out*/
+GF_Err gf_isom_close_stream(GF_ISOFile *movie, GF_BitStream **bs_out);
+
 /*delete the movie without saving it.*/
 void gf_isom_delete(GF_ISOFile *the_file);
 

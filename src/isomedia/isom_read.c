@@ -277,6 +277,48 @@ GF_Err gf_isom_close(GF_ISOFile *movie)
 
 
 GF_EXPORT
+GF_Err gf_isom_close_stream(GF_ISOFile *movie, GF_BitStream **bs_out)
+{
+	GF_Err e;
+	if (movie == NULL) return GF_ISOM_INVALID_FILE;
+	e = GF_OK;
+
+#ifndef GPAC_DISABLE_ISOM_WRITE
+	//write our movie to the file
+	if (movie->openMode != GF_ISOM_OPEN_READ) {
+		gf_isom_get_duration(movie);
+#ifndef	GPAC_DISABLE_ISOM_FRAGMENTS
+		//movie fragment mode, just store the fragment
+		if ((movie->openMode == GF_ISOM_OPEN_WRITE) && (movie->FragmentsFlags & GF_ISOM_FRAG_WRITE_READY)) {
+			e = gf_isom_close_fragments(movie);
+			if (e) return e;
+		}
+		else
+#endif
+			e = WriteToStream(movie, bs_out);
+	}
+#endif /*GPAC_DISABLE_ISOM_WRITE*/
+
+#ifndef GPAC_DISABLE_ISOM_FRAGMENTS
+	if (movie->moov) {
+		u32 i;
+
+		for (i = 0; i<gf_list_count(movie->moov->trackList); i++) {
+			GF_TrackBox *trak = (GF_TrackBox*)gf_list_get(movie->moov->trackList, i);
+			/*delete any pending dataHandler of scalable enhancements*/
+			if (trak->Media && trak->Media->information && trak->Media->information->scalableDataHandler && (trak->Media->information->scalableDataHandler != movie->movieFileMap))
+				gf_isom_datamap_del(trak->Media->information->scalableDataHandler);
+		}
+	}
+#endif
+
+	//free and return;
+	gf_isom_delete_movie(movie);
+	return e;
+}
+
+
+GF_EXPORT
 Bool gf_isom_has_root_od(GF_ISOFile *movie)
 {
 	if (!movie || !movie->moov || !movie->moov->iods || !movie->moov->iods->descriptor) return GF_FALSE;

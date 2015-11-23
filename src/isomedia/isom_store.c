@@ -1328,5 +1328,76 @@ GF_Err WriteToFile(GF_ISOFile *movie)
 }
 
 
+GF_Err WriteToStream(GF_ISOFile *movie, GF_BitStream **bs_out)
+{
+	//FILE *stream;
+	//GF_BitStream *bs;
+	GF_BitStream *bs;
+	MovieWriter mw;
+	GF_Err e = GF_OK;
+	if (!movie) return GF_BAD_PARAM;
+
+	if (movie->openMode == GF_ISOM_OPEN_READ) return GF_BAD_PARAM;
+
+	e = gf_isom_insert_copyright(movie);
+	if (e) return e;
+
+	memset(&mw, 0, sizeof(mw));
+	mw.movie = movie;
+
+	//capture mode: we don't need a new bitstream
+	if (movie->openMode == GF_ISOM_OPEN_WRITE) {
+		e = WriteFlat(&mw, 0, movie->editFileMap->bs);
+	}
+	else {
+		u32 buffer_size = movie->editFileMap ? gf_bs_get_output_buffering(movie->editFileMap->bs) : 0;
+		Bool is_stdout = 0;
+		if (!strcmp(movie->finalName, "std"))
+			is_stdout = 1;
+
+		//OK, we need a new bitstream
+		/*stream = is_stdout ? stdout : gf_fopen(movie->finalName, "w+b");
+		if (!stream)
+		return GF_IO_ERR;*/
+		bs = gf_bs_new(NULL, 0, GF_BITSTREAM_WRITE);
+		if (!bs) {
+			/*if (!is_stdout)
+			gf_fclose(stream);*/
+			return GF_OUT_OF_MEM;
+		}
+
+		if (buffer_size) {
+			gf_bs_set_output_buffering(bs, buffer_size);
+		}
+
+		switch (movie->storageMode) {
+		case GF_ISOM_STORE_TIGHT:
+		case GF_ISOM_STORE_INTERLEAVED:
+			e = WriteInterleaved(&mw, bs, 0);
+			break;
+		case GF_ISOM_STORE_DRIFT_INTERLEAVED:
+			e = WriteInterleaved(&mw, bs, 1);
+			break;
+		case GF_ISOM_STORE_STREAMABLE:
+			e = WriteFlat(&mw, 1, bs);
+			break;
+		default:
+			e = WriteFlat(&mw, 0, bs);
+			break;
+		}
+		
+		*bs_out = bs;
+
+		// TO DO DELETE SOMEWHERE IN CODE: gf_bs_del(bs);
+		/*if (!is_stdout)
+		gf_fclose(stream);*/
+	}
+	if (mw.buffer) gf_free(mw.buffer);
+	if (mw.nb_done<mw.total_samples) {
+		gf_set_progress("ISO File Writing", mw.total_samples, mw.total_samples);
+	}
+	return e;
+}
+
 
 #endif	/*!defined(GPAC_DISABLE_ISOM) && !defined(GPAC_DISABLE_ISOM_WRITE)*/
